@@ -1,0 +1,28 @@
+Student
+- number
+- name
+- photo 
+- email
+- phone
+
+Teacher
+- number
+- name
+- photo 
+- email
+- phone
+
+Presence
+- schedule_id
+- student_id
+- presence
+- note
+
+Schedule
+- dosen_id
+- program_name
+- note
+- time_start_at
+- time_end_at
+- created_at
+
