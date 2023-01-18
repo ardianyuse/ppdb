@@ -15,11 +15,5 @@ class Controller extends DasarController
 {
     public function index()
     {
-    	// mengambil data dari table syllabus
-    	$datapelajaran = DB::table('syllabus')->get();
-    	$datasiswa = Siswa->get();
- 
-    	// mengirim data syllabus ke view index
-    	return view('welcome', ['datapelajaran' => $datapelajaran]);
     }
 }

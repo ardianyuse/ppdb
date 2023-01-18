@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 
 /*
@@ -16,7 +16,7 @@ use App\Http\Controllers\StudentController;
 */
 
 // https://laravel.com/docs/9.x/routing
-Route::get('/penasaran', [Controller::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 // Route::get('/students', [StudentController::class, 'index']);
 // Route::  ('  ', StudentController::class);
 
