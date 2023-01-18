@@ -18,7 +18,6 @@ use App\Http\Controllers\StudentController;
 // https://laravel.com/docs/9.x/routing
 Route::get('/penasaran', [Controller::class, 'index']);
 // Route::get('/students', [StudentController::class, 'index']);
-Route::resource('students', StudentController::class);
 // Route::  ('  ', StudentController::class);
 
 // Route::get('/', ['App\Http\Controllers\Controller', 'index']);
@@ -27,3 +26,10 @@ Route::resource('students', StudentController::class);
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::post('login', [ 'as' => 'login', 'uses' => 'LoginController@login']);
+Route::middleware(['auth', 'user-access'])->group(function () {
+    Route::resource('students', StudentController::class);
+});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
