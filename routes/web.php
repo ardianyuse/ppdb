@@ -26,7 +26,7 @@ Route::get('/penasaran', [Controller::class, 'index']);
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::post('login', [ 'as' => 'login', 'uses' => 'LoginController@login']);
+
 Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('students', StudentController::class);
 });
