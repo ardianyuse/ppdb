@@ -19,6 +19,7 @@ use App\Http\Controllers\StudentController;
 Route::get('/penasaran', [Controller::class, 'index']);
 // Route::get('/students', [StudentController::class, 'index']);
 Route::resource('students', StudentController::class);
+// Route::  ('  ', StudentController::class);
 
 // Route::get('/', ['App\Http\Controllers\Controller', 'index']);
 

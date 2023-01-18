@@ -112,7 +112,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('students.index') }}">
               <i class="fa-solid fa-book"></i>
               Posts
             </a>
@@ -186,7 +186,6 @@
           </button>
         </div>
       </div>
-
       
       @yield('content')
       
