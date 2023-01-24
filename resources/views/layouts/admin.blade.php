@@ -136,7 +136,7 @@
           <li class="nav-item">
             <a class="nav-link" href="#">              
               <i class="fa-solid fa-user"></i>
-              Presences
+              Groups
             </a>
           </li>
           <li class="nav-item">
