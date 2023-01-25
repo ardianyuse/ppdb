@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Create New Student</div>
+                    <div class="card-header">Edit Student #{{ $student->id }}</div>
                     <div class="card-body">
                         <a href="{{ url('/students') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
@@ -19,10 +19,11 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/students') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/students/' . $student->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                            {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            @include ('students.form', ['formMode' => 'create'])
+                            @include ('students.form', ['formMode' => 'edit'])
 
                         </form>
 

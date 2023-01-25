@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ Route::get('/', [HomeController::class, 'index']);
 // });
 
 Route::middleware(['auth', 'user-access'])->group(function () {
-    Route::resource('students', StudentController::class);
+    Route::resource('students', StudentsController::class);
 });
 Auth::routes();
 

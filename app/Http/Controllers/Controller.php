@@ -13,7 +13,4 @@ use Illuminate\Support\Facades\DB;
 // https://laravel.com/docs/9.x/controllers
 class Controller extends DasarController
 {
-    public function index()
-    {
-    }
 }
