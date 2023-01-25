@@ -128,13 +128,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">              
+            <a class="nav-link" href="{{ route('students.index') }}">             
               <i class="fa-solid fa-user"></i>
               Students
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">              
+            <a class="nav-link" href="{{ route('groups.index') }}">             
               <i class="fa-solid fa-user"></i>
               Groups
             </a>
