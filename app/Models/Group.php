@@ -32,4 +32,9 @@ class Group extends Model
         return $this->belongsTo('App\Models\User');
     }
     
+    public function members()
+    {
+        return $this->hasMany('App\Models\Member');
+    }
+    
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
+use App\Models\Group;
 use App\Models\Member;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class MembersController extends Controller
@@ -15,7 +17,7 @@ class MembersController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Group $group, Request $request)
     {
         $keyword = $request->get('search');
         $perPage = 25;
@@ -36,9 +38,10 @@ class MembersController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Group $group)
     {
-        return view('members.create');
+        $students = Student::all();
+        return view('members.create', compact('group', 'students'));
     }
 
     /**
@@ -48,14 +51,14 @@ class MembersController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(Group $group, Request $request)
     {
         
         $requestData = $request->all();
         
         Member::create($requestData);
-
-        return redirect('members')->with('flash_message', 'Member added!');
+        // route('profile', ['id' => 1]);
+        return redirect()->route('groups.show', $group)->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -65,7 +68,7 @@ class MembersController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show(Group $group, $id)
     {
         $member = Member::findOrFail($id);
 
@@ -79,7 +82,7 @@ class MembersController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Group $group, $id)
     {
         $member = Member::findOrFail($id);
 
@@ -94,7 +97,7 @@ class MembersController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(Group $group, Request $request, $id)
     {
         
         $requestData = $request->all();
@@ -112,7 +115,7 @@ class MembersController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy(Group $group, $id)
     {
         Member::destroy($id);
 

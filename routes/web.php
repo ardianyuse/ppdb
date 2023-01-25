@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\GroupsController;
+use App\Http\Controllers\MembersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,9 @@ Route::get('/', [HomeController::class, 'index']);
 Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('students', StudentsController::class);
     Route::resource('groups', GroupsController::class);
-    Route::resource('members', 'MembersController');
+    // nested resources
+    // crud member, dilakukan didalam group
+    Route::resource('groups.members', MembersController::class)->shallow();
 });
 Auth::routes();
 

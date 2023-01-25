@@ -19,7 +19,7 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/members') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('groups.members.store', $group) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             @include ('members.form', ['formMode' => 'create'])
