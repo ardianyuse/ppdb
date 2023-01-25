@@ -31,6 +31,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('students', StudentsController::class);
     Route::resource('groups', GroupsController::class);
+    Route::resource('members', 'MembersController');
 });
 Auth::routes();
 
