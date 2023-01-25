@@ -1,0 +1,3 @@
+php artisan crud:generate Students --fields='name#string;email#string' --form-helper=html
+php artisan crud:generate Groups  --fields='user_id#integer#unsigned;name#string'  --form-helper=html --foreign-keys="user_id#id#users#cascade"  --relationships="user#belongsTo#App\Models\User"
+php artisan crud:generate Members  --fields='group_id#bigint#unsigned;student_id#bigint#unsigned'  --form-helper=html --foreign-keys="group_id#id#groups#cascade;student_id#id#students#cascade"  --relationships="group#belongsTo#App\Models\Group;student#belongsTo#App\Models\Student;"
