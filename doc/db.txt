@@ -1,28 +1,60 @@
 Student
 - number
 - name
-- photo 
+- photo
 - email
 - phone
 
-Teacher
-- number
-- name
-- photo 
-- email
-- phone
+Group
+untuk menyimpan informasi group kelas yg dibuat
+seharusnya namanya sih Class, tapi akan rancu dengan keyword Class di bahasa pemrograman.
+Kolomnya:
+- user_id : foreign key ke table users, dosen dari kelas yg dibuat. ketika membuat group, user_id ini diambil dari user yg sedang login
+- name : nama group / kelas
+Contoh data:
+id  |   user_id   | name
+1   |   1         | Kelas Pemrograman 
 
-Presence
-- schedule_id
-- student_id
-- presence
-- note
+Member
+untuk menyimpan informasi sebuah  group kelas memiliki murid siapa saja
+Kolomnya:
+- group_id : foreign key ke table groups, yaitu group kelas
+- student_id : foreign key ke table students, yaitu siswa
+Contoh data:
+id  |   group_id   | student_id
+1   |   1          | 1
+2   |   1          | 2
+3   |   1          | 3
+4   |   1          | 4
+
+
 
 Schedule
-- dosen_id
-- program_name
-- note
-- time_start_at
-- time_end_at
-- created_at
+untuk menyimpan informasi  sebuah group kelas memiliki jam KBM kapan saja
+- group_id : foreign key ke table groups, kelas yg sedang diajar
+- user_id : foreign key ke table users, dosen yg memiliki jadwal di kelas group_id
+- note : catatan materi yg diajarkan ketika KBM
+- time_start_at : waktu mulai KBM
+- time_end_at : waktu selesai KBM
+Contoh data:
+id  |   group_id | user_id | note | time_start_at | time_end_at
+1   |   1        |   1     | laravel basic   | 2023-01-01 08:00:00 | 2023-01-01 11:00:00 
+2   |   1        |   1     | laravel routing | 2023-01-02 08:00:00 | 2023-01-02 11:00:00 
+3   |   1        |   1     | laravel crud    | 2023-01-03 08:00:00 | 2023-01-03 11:00:00 
+4   |   1        |   1     | laravel login   | 2023-01-04 08:00:00 | 2023-01-04 11:00:00 
 
+Presence
+- schedule_id : foreign key ke table schedules, yaitu KBM yg mau diabsen
+- student_id : foreign key ke table students, yaitu siswa yang akan diabsen
+- presence : status absensi: hadir, izin, sakit, alpha
+- note : catatan khusus per siswa, kalau ada
+Contoh data: 
+id | schedule_id | student_id | presence | note
+1  | 1           | 1          | hadir    | rajin
+2  | 1           | 2          | hadir    | tidur di kelas
+3  | 1           | 3          | alpha    | -
+4  | 1           | 4          | sakit    | -
+5  | 2           | 1          | hadir    | rajin
+6  | 2           | 2          | hadir    | rajin
+7  | 2           | 3          | hadir    | rajin
+8  | 2           | 4          | hadir    | rajin

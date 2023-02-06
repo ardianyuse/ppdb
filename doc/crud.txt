@@ -1,3 +1,25 @@
 php artisan crud:generate Students --fields='name#string;email#string' --form-helper=html
-php artisan crud:generate Groups  --fields='user_id#integer#unsigned;name#string'  --form-helper=html --foreign-keys="user_id#id#users#cascade"  --relationships="user#belongsTo#App\Models\User"
+
+php artisan crud:generate Groups  --fields='user_id#bigint#unsigned;name#string'  --form-helper=html --foreign-keys="user_id#id#users#cascade"  --relationships="user#belongsTo#App\Models\User"
+
 php artisan crud:generate Members  --fields='group_id#bigint#unsigned;student_id#bigint#unsigned'  --form-helper=html --foreign-keys="group_id#id#groups#cascade;student_id#id#students#cascade"  --relationships="group#belongsTo#App\Models\Group;student#belongsTo#App\Models\Student;"
+
+php artisan crud:generate Schedules  --fields='user_id#bigint#unsigned;group_id#bigint#unsigned;note#string;start_at#datetime;end_at#datetime;'  --form-helper=html --foreign-keys="user_id#id#users#cascade;group_id#id#users#cascade;"  --relationships="user#belongsTo#App\Models\User;group#belongsTo#App\Models\User;"
+
+
+replace
+origin
+
+            @include('admin.sidebar')
+
+
+with 
+blan space
+
+replace
+
+            @include('admin.sidebar')
+replace
+@extends('layouts.app')
+with
+@extends('layouts.admin')
