@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Schedule;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class SchedulesController extends Controller
@@ -41,7 +43,8 @@ class SchedulesController extends Controller
      */
     public function create()
     {
-        return view('schedules.create');
+        $groups = Group::where('user_id', Auth::id());
+        return view('schedules.create', compact('groups'));
     }
 
     /**
