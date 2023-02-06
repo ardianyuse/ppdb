@@ -6,6 +6,8 @@ php artisan crud:generate Members  --fields='group_id#bigint#unsigned;student_id
 
 php artisan crud:generate Schedules  --fields='user_id#bigint#unsigned;group_id#bigint#unsigned;note#string;start_at#datetime;end_at#datetime;'  --form-helper=html --foreign-keys="user_id#id#users#cascade;group_id#id#users#cascade;"  --relationships="user#belongsTo#App\Models\User;group#belongsTo#App\Models\User;"
 
+php artisan crud:generate Presences  --fields='schedule_id#bigint#unsigned;student_id#bigint#unsigned;note#string;start_at#datetime;end_at#datetime;'  --form-helper=html --foreign-keys="schedule_id#id#schedules#cascade;student_id#id#schedules#cascade;"  --relationships="schedule#belongsTo#App\Models\Schedule;student#belongsTo#App\Models\Student;"
+
 
 replace
 origin
@@ -16,9 +18,7 @@ origin
 with 
 blan space
 
-replace
 
-            @include('admin.sidebar')
 replace
 @extends('layouts.app')
 with

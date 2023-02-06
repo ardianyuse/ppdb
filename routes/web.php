@@ -18,17 +18,7 @@ use App\Http\Controllers\SchedulesController;
 |
 */
 
-// https://laravel.com/docs/9.x/routing
 Route::get('/', [HomeController::class, 'index']);
-// Route::get('/students', [StudentController::class, 'index']);
-// Route::  ('  ', StudentController::class);
-
-// Route::get('/', ['App\Http\Controllers\Controller', 'index']);
-
-// $siswa = ['eddit', 'azzam', 'ridho'];
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('students', StudentsController::class);
@@ -37,7 +27,9 @@ Route::middleware(['auth', 'user-access'])->group(function () {
     // crud member, dilakukan didalam group
     Route::resource('groups.members', MembersController::class)->shallow();
     Route::resource('schedules', SchedulesController::class);
+    Route::resource('presences', PresencesController::class);
 });
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
