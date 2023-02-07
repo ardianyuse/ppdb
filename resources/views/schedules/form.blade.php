@@ -9,8 +9,6 @@
             </option>
         @endforeach
     </select>
-
-    <input class="form-control" name="group_id" type="number" id="group_id" value="" >
     {!! $errors->first('group_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('note') ? 'has-error' : ''}}">

@@ -43,7 +43,7 @@ class SchedulesController extends Controller
      */
     public function create()
     {
-        $groups = Group::where('user_id', Auth::id());
+        $groups = Group::where('user_id', Auth::id())->get();
         return view('schedules.create', compact('groups'));
     }
 
