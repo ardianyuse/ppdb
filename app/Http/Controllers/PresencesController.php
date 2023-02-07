@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Presence;
+use App\Models\Schedule;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class PresencesController extends Controller
@@ -15,7 +18,7 @@ class PresencesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Schedule $schedule, Request $request)
     {
         $keyword = $request->get('search');
         $perPage = 25;
@@ -39,9 +42,10 @@ class PresencesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Schedule $schedule)
     {
-        return view('presences.create');
+        $students = Student::all();
+        return view('presences.create', compact('students', 'schedule'));
     }
 
     /**
@@ -51,14 +55,14 @@ class PresencesController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(Schedule $schedule, Request $request)
     {
-        
+        $request->request->add(['schedule_id' => $schedule->id]); 
         $requestData = $request->all();
         
         Presence::create($requestData);
 
-        return redirect('presences')->with('flash_message', 'Presence added!');
+        return redirect('schedules', $schedule)->with('flash_message', 'Presence added!');
     }
 
     /**
@@ -68,7 +72,7 @@ class PresencesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show(Schedule $schedule, $id)
     {
         $presence = Presence::findOrFail($id);
 
@@ -82,7 +86,7 @@ class PresencesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Schedule $schedule, $id)
     {
         $presence = Presence::findOrFail($id);
 
@@ -97,7 +101,7 @@ class PresencesController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(Schedule $schedule, Request $request, $id)
     {
         
         $requestData = $request->all();
@@ -115,7 +119,7 @@ class PresencesController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy(Schedule $schedule, $id)
     {
         Presence::destroy($id);
 

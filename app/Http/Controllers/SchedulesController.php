@@ -56,7 +56,7 @@ class SchedulesController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->request->add(['user_id' => Auth::id()]); 
         $requestData = $request->all();
         
         Schedule::create($requestData);

@@ -35,5 +35,9 @@ class Schedule extends Model
     {
         return $this->belongsTo('App\Models\Group');
     }
+    public function presences()
+    {
+        return $this->hasMany('App\Models\Presence');
+    }
     
 }

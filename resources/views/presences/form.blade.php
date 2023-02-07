@@ -1,11 +1,13 @@
-<div class="form-group {{ $errors->has('schedule_id') ? 'has-error' : ''}}">
-    <label for="schedule_id" class="control-label">{{ 'Schedule Id' }}</label>
-    <input class="form-control" name="schedule_id" type="number" id="schedule_id" value="{{ isset($presence->schedule_id) ? $presence->schedule_id : ''}}" >
-    {!! $errors->first('schedule_id', '<p class="help-block">:message</p>') !!}
-</div>
+
 <div class="form-group {{ $errors->has('student_id') ? 'has-error' : ''}}">
     <label for="student_id" class="control-label">{{ 'Student Id' }}</label>
-    <input class="form-control" name="student_id" type="number" id="student_id" value="{{ isset($presence->student_id) ? $presence->student_id : ''}}" >
+    
+    <select class="form-control" id="student-option" name="student_id">
+        @foreach ($students as $student)
+          <option value="{{ $student->id }}">{{ $student->name }}</option>
+        @endforeach
+    </select>
+    
     {!! $errors->first('student_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('note') ? 'has-error' : ''}}">
