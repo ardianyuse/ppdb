@@ -19,11 +19,13 @@ use App\Http\Controllers\PresencesController;
 |
 */
 
+
 Route::get('/', [HomeController::class, 'index']);
 
 Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('students', StudentsController::class);
     Route::resource('groups', GroupsController::class);
+    Route::resource('groups', IdbcController::class);
     // nested resources
     // crud member, dilakukan didalam group
     Route::resource('groups.members', MembersController::class)->shallow();
