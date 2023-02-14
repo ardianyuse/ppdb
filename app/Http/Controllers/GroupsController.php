@@ -19,13 +19,13 @@ class GroupsController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 25;
-
+        $groups = Group::where('user_id', 'LIKE', Auth::id());
+        
         if (!empty($keyword)) {
-            $groups = Group::where('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('name', 'LIKE', "%$keyword%")
+            $groups = $groups->orWhere('name', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $groups = Group::latest()->paginate($perPage);
+            $groups = $groups->paginate($perPage);
         }
 
         return view('groups.index', compact('groups'));
