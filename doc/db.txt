@@ -58,3 +58,50 @@ id | schedule_id | student_id | presence | note
 6  | 2           | 2          | hadir    | rajin
 7  | 2           | 3          | hadir    | rajin
 8  | 2           | 4          | hadir    | rajin
+
+computer assisted test (CAT)
+
+- setiap group (kelas) bisa punya beberapa quizzes (Kuis)
+- setiap Quiz punya beberapa questions (soal)
+- setiap Question punya beberapa answers (jawaban) -> tidak dibuat
+- user_answers
+
+Design DB secara umum
+table questions
+id |  number | text
+1  |  1      | Yang termasuk bahasa pemrograman adalah?
+
+
+table answers
+id |  question_id | text
+1  |  1           | A. PHP
+2  |  1           | B. SQL
+3  |  1           | C. HTML
+4  |  1           | D. CSS
+
+
+Design DB yg sudah de-normalisasi
+table questions
+id |  number | answer1 | answer2 | answer3 | answer4 | text
+1  |  1      | A. PHP  | B. SQL  | C. HTML | D. CSS  | Yang termasuk bahasa pemrograman adalah?
+
+
+id |  number | answer1 | answer2 | answer3 | answer4 | text
+1  |  1      | A. PHP  | B. SQL  | C. HTML |         | Yang termasuk bahasa pemrograman adalah?
+
+
+modal:
+1. skill & experience. 
+2. 300rb.
+
+faktor penentu harga
+1. level dari client
+2. level support 
+a. jual putus (hanya untuk software), 
+-- tapi bisa ambil profit dari hosting
+
+b. berlangganan (software as a service)
+contoh: 
+zahir - akuntansi online
+
+
