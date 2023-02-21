@@ -47,25 +47,28 @@
                                 </thead>
                                 <tbody>
                                     
-                        <form method="POST" action="{{ url('/groups') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/groups/' . $group->id . '/attendances_store') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                                 @foreach($group->members as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->student->name }}</td>
+                                        <td>
+                                            {{ $item->student->name }}
+                                            <input type="hidden" name="items[{{ $loop->iteration }}][student_id]" value="{{ $item->student_id }}">
+                                        </td>
                                         <td>
                                             <label class="radio-inline">
-                                                <input type="radio" name="items[{{ $loop->iteration }}][absensi][0]" checked> Hadir
+                                                <input type="radio" name="items[{{ $loop->iteration }}][absensi]" value="Hadir" checked> Hadir
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="items[{{ $loop->iteration }}][absensi][1]"> Sakit
+                                                <input type="radio" name="items[{{ $loop->iteration }}][absensi]" value="Sakit"> Sakit
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="items[{{ $loop->iteration }}][absensi][2]"> Izin
+                                                <input type="radio" name="items[{{ $loop->iteration }}][absensi]" value="Izin"> Izin
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="items[{{ $loop->iteration }}][absensi][3]"> Alpha
+                                                <input type="radio" name="items[{{ $loop->iteration }}][absensi]" value="Alpha"> Alpha
                                             </label>
                                         </td>
                                         
@@ -75,18 +78,23 @@
 
                                     </tr>
                                 @endforeach
-                                
-
-</form>
+                        
                                 </tbody>
                             </table>
-                            
+                            <div class="form-group">
+                                <input type="hidden" name="group_id" value="{{ $group->id }}">
+                                <label for="name" class="control-label">{{ 'Note' }}</label>
+                                <input type="text" class="form-control" name="note">
+                            </div>
+
 
                             <div class="form-group">
                                 <input class="btn btn-primary" type="submit" value="Save">
                             </div>
                         </div>
+        
 
+                        </form>
                     </div>
                 </div>
             </div>

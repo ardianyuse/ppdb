@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Group;
+use App\Models\Presence;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 
 class GroupsController extends Controller
@@ -14,6 +17,32 @@ class GroupsController extends Controller
     {
         $group = Group::findOrFail($id);
         return view('groups.attendances', compact('group'));
+    }
+    public function attendances_store(Request $request)
+    {
+        $start_at = Carbon::now();
+        $end_at = $start_at->add(3, 'hour');
+        $request->request->add([
+            'user_id' => Auth::id(),
+            'start_at' => $start_at, 
+            'end_at' => $end_at,             
+        ]); 
+        $requestData = $request->all();
+        
+        $schedule = Schedule::create($requestData);
+
+        foreach($requestData['items'] as $key => $item){
+            $presence = new Presence();
+            $presence->schedule_id = $schedule->id;
+            $presence->student_id = $item['student_id'];
+            $presence->note = $item['absensi'] . ' ' . $item['note'];
+            $presence->start_at = $start_at;
+            $presence->end_at = $end_at;
+            $presence->save();
+        }
+        
+        return redirect()->route('schedules.show', $schedule->id)
+                ->with('flash_message', 'Data absensi berhasil disimpan!');
     }
 
     /**

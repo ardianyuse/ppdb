@@ -25,8 +25,7 @@ Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('students', StudentsController::class);
     
     Route::get('groups/{id}/attendances', [GroupsController::class, 'attendances']); 
-    // Route::post('groups/{id}/attendances_store', 'GroupsController@attendances_store'); 
-    // Route::get('groups/{id} ', 'GroupsController@show'); 
+    Route::post('groups/{id}/attendances_store', [GroupsController::class, 'attendances_store']); 
     Route::resource('groups', GroupsController::class);
     // nested resources
     // crud member, dilakukan didalam group
