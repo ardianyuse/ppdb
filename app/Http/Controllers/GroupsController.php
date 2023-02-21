@@ -40,8 +40,8 @@ class GroupsController extends Controller
             $presence->end_at = $end_at;
             $presence->save();
         }
-        
-        return redirect()->route('schedules.show', $schedule->id)
+
+        return redirect()->route('schedules.show', $schedule)
                 ->with('flash_message', 'Data absensi berhasil disimpan!');
     }
 
