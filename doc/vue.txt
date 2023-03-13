@@ -1,0 +1,6 @@
+npm install
+npm install vue vue-router vue-axios
+
+
+
+
