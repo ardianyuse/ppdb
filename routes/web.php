@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SurveysController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\GroupsController;
 use App\Http\Controllers\MembersController;
@@ -20,6 +21,8 @@ use App\Http\Controllers\PresencesController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/surveys', [SurveysController::class, 'index']);
+Route::post('/surveys', [SurveysController::class, 'store']);
 
 Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('students', StudentsController::class);

@@ -1,6 +1,10 @@
-npm install
-npm install vue vue-router vue-axios
+https://techvblogs.com/blog/how-to-install-vue-3-in-laravel-9-with-vite
 
+npm install
+npm install vue@next vue-loader@next vue-axios
+npm install @vitejs/plugin-vue
+
+install vs code extension: Vue Language Features (Volar)
 
 
 
