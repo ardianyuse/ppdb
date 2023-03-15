@@ -35,13 +35,45 @@
     import axios from 'axios';
     
     export default {
-                
+        data() {
+          return {
+            name: '',
+            user: {
+              id: 0,
+            }
+          }
+        },
+        mounted() {
+          console.log('mount'); // I'm text inside the component.
+          // cara pertama
+          var data_user_element = document.getElementById('datauser');
+          var id = data_user_element.getAttribute('data-userid');
+          this.user.id = id;
+          console.log(id);
+        },
         methods: {
+            // cara ke dua
+            getUser(){
+
+              axios({
+                    method: 'get',
+                    url: '/get_user',
+                })
+                .then(function (response) {
+                    console.log(response);
+                    this.user.id = parseJson(response.data).id;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
             survey(value) {
                 console.log(`Hello ${value}!`);
 
                 var body = {
                     value: value,
+                    // dipakai disini data user id nya
+                    user_id: this.user.id
                     // field_name: field_value,
                     // field_name: field_value,
                     // field_name: field_value,

@@ -46,7 +46,7 @@
   <body>
     
 <main>
-  
+  <div id="datauser" data-userid="{{ $user->id }}"></div>
   <div id="appli"></div>
 
 
